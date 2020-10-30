@@ -1,0 +1,16 @@
+package com.example.demo.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/exercicio1spring")
+public class ExercicioController {
+	
+	@GetMapping
+	public String habilidades() {
+		return "Persistência, atenção aos detalhes e muita calma.";
+	}
+
+}
