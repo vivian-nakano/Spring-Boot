@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,9 +31,21 @@ public class Controller implements WebMvcConfigurer {
 		return repository.findAll();
 	}
 	
-	@GetMapping("/manutencoes/id/{id}")
-	public Optional<ManutencaoTable> buscarUm(@PathVariable Long id) {
-		return repository.findById(id);
+	//@GetMapping("/manutencoes/id/{id}")
+	//public Optional<ManutencaoTable> buscarUm(@PathVariable Long id) {
+	//	return repository.findById(id);
+	//}
+	
+	//deste jeito nao retornar erro
+//	@GetMapping("/manutencoes/id/{id}")
+//	public Optional<ManutencaoTable> buscarUm(@PathVariable Long id) {
+//	return repository.findById(id);
+//}
+	
+@GetMapping("/manutencoes/id/{id}")
+	public ResponseEntity<ManutencaoTable> getById(@PathVariable Long id){
+		return repository.findById(id).map(resp -> ResponseEntity.ok(resp))
+				.orElse(ResponseEntity.notFound().build());
 	}
 
 	//post é inserir, neste caso mesma URL acima
@@ -63,8 +76,6 @@ public class Controller implements WebMvcConfigurer {
 	public void delete(@PathVariable Long id) {
 		repository.deleteById(id);
 	}
-	
-	
 	// INJETAR O REPOSITORIO
 	// para acessar a página pelo localhost:8080 -> te leva pra index
 
@@ -82,5 +93,4 @@ public class Controller implements WebMvcConfigurer {
 	// option é pra evitar
 	// manutencao table nome da table
 	// pathvariable: pega todos os dados com id
-
 }
