@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
 
 @Entity
-@Table
+@Table(name="tb_manutencao_crud")
 public class ManutencaoTable {
 
 	@Id
