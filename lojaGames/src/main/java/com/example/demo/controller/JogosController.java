@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import java.util.List; 
+import java.util.List;  
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,10 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.model.Categoria;
 import com.example.demo.model.Jogos;
 import com.example.demo.repository.JogosRepository;
-
+ 
 
 @RestController //informa pro Spring que se trata de controlador para receber requisições
 @RequestMapping("/jogos") //definir rota ou URL
@@ -34,7 +33,7 @@ public class JogosController {
 		return ResponseEntity.ok(repository.findAll());
 	}
 	
-	@GetMapping("/jogos/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Jogos> GetById(@PathVariable Long id) {
 		return repository.findById(id)
 				.map(resp -> ResponseEntity.ok(resp)) 
@@ -46,21 +45,20 @@ public class JogosController {
 		return ResponseEntity.ok(repository.findAllByTituloContainingIgnoreCase(titulo));
 	}
 	
-	@PostMapping("/jogos")
+	@PostMapping
 	public ResponseEntity<Jogos>post (@RequestBody Jogos jogos){
 		return ResponseEntity.status(HttpStatus.CREATED)
 				.body(repository.save(jogos));
 	}
 	
-	@PutMapping("/jogos")
+	@PutMapping
 	public ResponseEntity<Jogos> put (@RequestBody Jogos jogos){
 		return ResponseEntity.status(HttpStatus.OK).body(repository.save(jogos));
 	}
 	
-	@DeleteMapping("/delete/jogos")
+	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
 		repository.deleteById(id);
 	}
-	
 	
 }

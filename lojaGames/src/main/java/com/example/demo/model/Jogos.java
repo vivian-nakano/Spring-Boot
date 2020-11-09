@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,47 +21,72 @@ public class Jogos {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column
 	@NotNull
 	@Size(min = 5, max = 100)
 	private String titulo;
 	
+	@Column
 	@NotNull
-	private int ano;
+	private double preco;
+	
+	@Column
+	@NotNull
+	private Boolean disponibilidade;
+	
 	
 	@ManyToOne
 	@JsonIgnoreProperties("tb_jogos")
 	private Categoria categoria;
 
+
 	public Long getId() {
 		return id;
 	}
+
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+
 	public String getTitulo() {
 		return titulo;
 	}
+
 
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
 
-	public int getAno() {
-		return ano;
+
+	public double getPreco() {
+		return preco;
 	}
 
-	public void setAno(int ano) {
-		this.ano = ano;
+
+	public void setPreco(double preco) {
+		this.preco = preco;
 	}
+
+
+	public Boolean getDisponibilidade() {
+		return disponibilidade;
+	}
+
+
+	public void setDisponibilidade(Boolean disponibilidade) {
+		this.disponibilidade = disponibilidade;
+	}
+
 
 	public Categoria getCategoria() {
 		return categoria;
 	}
 
+
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
-	}
+	}	
 	
 }

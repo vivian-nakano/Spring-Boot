@@ -1,9 +1,10 @@
 package com.example.demo.model;
 
 
-import java.util.List;
+import java.util.List; 
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,14 +25,19 @@ public class Categoria {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private Long id;
-
-	@NotNull
-	@Size(min = 5, max = 100)
-	private String descricao;
 	
 	@OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("categoria")
 	private List<Jogos> jogos;
+	
+	@Column
+	@NotNull
+	@Size(min = 5, max = 100)
+	private String nome;
+	
+	@Column
+	@NotNull
+	private String descricaoCategoria;
 
 	public Long getId() {
 		return id;
@@ -39,14 +45,6 @@ public class Categoria {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getTipo() {
-		return descricao;
-	}
-
-	public void setTipo(String tipo) {
-		this.descricao = tipo;
 	}
 
 	public List<Jogos> getJogos() {
@@ -57,4 +55,21 @@ public class Categoria {
 		this.jogos = jogos;
 	}
 
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getDescricaoCategoria() {
+		return descricaoCategoria;
+	}
+
+	public void setDescricaoCategoria(String descricaoCategoria) {
+		this.descricaoCategoria = descricaoCategoria;
+	}
+	
+	
 }
