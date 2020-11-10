@@ -2627,3 +2627,4 @@ java.io.EOFException: null
 2020-11-10 19:03:54,991 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
 2020-11-10 19:03:54,996 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
 2020-11-10 19:03:55,000 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-11-10 19:03:55,000 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Vivi\Documents\workspace-sts-3.9.12.RELEASE\minhaLojaGames\src\test\resources
