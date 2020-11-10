@@ -12,6 +12,7 @@ import com.sun.istack.NotNull;
 @Table(name="usuario")
 public class Usuario {
 	
+	//atributos usuario
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;

@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name="jogos")
 public class Jogos {
 
-	//ATRIBUTOS
+	//definindo atributos
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -25,11 +25,11 @@ public class Jogos {
 	@Column
 	private String descricao;
 	
-	@ManyToOne
+	@ManyToOne   //relacao muitos para um
 	@JsonIgnoreProperties("jogo")
 	private Categoria categoria;
 
-	//GETTERS AND SETTERS
+	//getters and setters
 	public Long getId() {
 		return id;
 	}

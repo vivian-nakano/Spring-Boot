@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name = "categoria")
 public class Categoria {
 	
-	//ATRIBUTOS
+	//atributos da tabela
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -32,6 +32,7 @@ public class Categoria {
 	@JsonIgnoreProperties("categoria")
 	private List<Jogos> jogos;
 	
+	//definindo getters and setters
 	public Long getId() {
 		return id;
 	}
