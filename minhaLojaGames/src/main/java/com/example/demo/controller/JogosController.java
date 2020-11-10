@@ -18,18 +18,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Jogos;
 import com.example.demo.repository.JogosRepository;
- 
 
-@RestController 
-@RequestMapping("/jogos") 
-@CrossOrigin(origins="*",allowedHeaders="*")
+@RestController
+@RequestMapping("/jogos")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class JogosController {
 
-	@Autowired //SERVICO DE INJECAO DE DEPENDENCIA DO SPRING. Como é interface, nao dá pra instanciar. Instanciação fica por conta do spring: aí usa autowired
+	@Autowired
 	private JogosRepository repository;
 	
 	@GetMapping
-	public List<Jogos> findAllCategoria(){
+	public List<Jogos> findAllProduto(){
 		return repository.findAll();
 	}
 	
@@ -38,18 +37,17 @@ public class JogosController {
 		return repository.findById(id);
 	}
 	
-	@GetMapping("/titulo/{titulo}") 
-	public ResponseEntity<List<Jogos>> GetByTitulo(@PathVariable String titulo) {
-		return ResponseEntity.ok(repository.findAllByTituloContainingIgnoreCase(titulo));
+	@GetMapping("/descricao/{descricao}")
+	public ResponseEntity<List<Jogos>> findByDescricaoProduto (@PathVariable String descricao){
+		return ResponseEntity.ok(repository.findAllByDescricaoContainingIgnoreCase(descricao));
 	}
 	
 	@PostMapping
-	public ResponseEntity<Jogos>postProdutos (@RequestBody Jogos jogos){
-		return ResponseEntity.status(HttpStatus.CREATED)
-				.body(repository.save(jogos));
+	public ResponseEntity<Jogos> postProduto (@RequestBody Jogos jogo){
+		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(jogo));
 	}
 	
-	@PutMapping("/{id})")
+	@PutMapping("/{id}")
 	public Jogos putProduto (@PathVariable Long id, @RequestBody Jogos objJogos) {
 		objJogos.setId(id);
 		repository.save(objJogos);

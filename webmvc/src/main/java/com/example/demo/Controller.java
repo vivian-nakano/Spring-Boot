@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,12 +25,24 @@ public class Controller implements WebMvcConfigurer {
 
 	@Autowired
 	private ManutencaoRepository repository;
+	
+	@Autowired
+	private Services service;
+	
+	 @GetMapping("/teste")
+	    public ResponseEntity<List<ManutencaoTable>> listAllItens() {
+	        List<ManutencaoTable> itens= service.findAllItens();
+	        if(itens.isEmpty()){
+	            return new ResponseEntity<List<ManutencaoTable>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+	        }
+	        return new ResponseEntity<List<ManutencaoTable>>(itens, HttpStatus.ACCEPTED);
+	    }
 
 	//localhost:8080/manutencoes --> vai pegar todos os dados da tabela
-	@GetMapping("/manutencoes")
-	public List<ManutencaoTable> buscarTodos() {
-		return repository.findAll();
-	}
+	//@GetMapping("/manutencoes")
+	//public List<ManutencaoTable> buscarTodos() {
+	//	return repository.findAll();
+	//}
 	
 	//@GetMapping("/manutencoes/id/{id}")
 	//public Optional<ManutencaoTable> buscarUm(@PathVariable Long id) {
@@ -37,10 +50,10 @@ public class Controller implements WebMvcConfigurer {
 	//}
 	
 	//deste jeito nao retornar erro
-//	@GetMapping("/manutencoes/id/{id}")
-//	public Optional<ManutencaoTable> buscarUm(@PathVariable Long id) {
-//	return repository.findById(id);
-//}
+	 //	@GetMapping("/manutencoes/id/{id}")
+	 //	public Optional<ManutencaoTable> buscarUm(@PathVariable Long id) {
+	 //	return repository.findById(id);
+	 //}
 	
 @GetMapping("/manutencoes/id/{id}")
 	public ResponseEntity<ManutencaoTable> getById(@PathVariable Long id){

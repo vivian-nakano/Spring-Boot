@@ -7,69 +7,59 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.sun.istack.NotNull;
 
 @Entity
-@Table(name="tb_jogos")
+@Table(name="jogos")
 public class Jogos {
-	
+
+	//ATRIBUTOS
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column
-	@NotNull
-	@Size(min = 5, max = 100)
-	private String titulo;
+	private String nome;
 	
 	@Column
-	@NotNull
-	private double preco;
+	private String descricao;
 	
 	@ManyToOne
-	@JsonIgnoreProperties("jogos")
+	@JsonIgnoreProperties("jogo")
 	private Categoria categoria;
 
-
+	//GETTERS AND SETTERS
 	public Long getId() {
 		return id;
 	}
-
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-
-	public String getTitulo() {
-		return titulo;
+	public String getNome() {
+		return nome;
 	}
 
-
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-
-	public double getPreco() {
-		return preco;
+	public String getDescricao() {
+		return descricao;
 	}
 
-
-	public void setPreco(double preco) {
-		this.preco = preco;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	public Categoria getCategoria() {
 		return categoria;
 	}
 
-
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
-	}	
+	}
 	
 }
