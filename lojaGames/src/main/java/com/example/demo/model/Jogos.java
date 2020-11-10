@@ -30,11 +30,6 @@ public class Jogos {
 	@NotNull
 	private double preco;
 	
-	@Column
-	@NotNull
-	private Boolean disponibilidade;
-	
-	
 	@ManyToOne
 	@JsonIgnoreProperties("tb_jogos")
 	private Categoria categoria;
@@ -68,17 +63,6 @@ public class Jogos {
 	public void setPreco(double preco) {
 		this.preco = preco;
 	}
-
-
-	public Boolean getDisponibilidade() {
-		return disponibilidade;
-	}
-
-
-	public void setDisponibilidade(Boolean disponibilidade) {
-		this.disponibilidade = disponibilidade;
-	}
-
 
 	public Categoria getCategoria() {
 		return categoria;
